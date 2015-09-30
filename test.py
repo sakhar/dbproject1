@@ -62,8 +62,7 @@ for i in range(10):
         list_of_tokens.append(tokens_processed)
 
         # We now ask the user if the web page is relevant or not,
-        # for this first we compute the numbert of occurences of 
-        # the relevant tokens
+        # we compute the number of occurences of the relevant tokens
         relevant = ''
         print(text)
         while relevant not in ['n','y']:
@@ -73,7 +72,7 @@ for i in range(10):
                 for tok in tokens_processed:
                     tf[tok] += 1
 
-        # We compute the inverted document for each token
+        # we compute the inverted document for each token
         for tok in set(tokens_processed):
             idf[tok] += 1
 
@@ -85,7 +84,7 @@ for i in range(10):
         print 'No relevant document found'
         break
 
-    # We selected the new query term for the query having the largest tf-idf
+    # we selected the new query term for the query having the largest tf-idf
     tf_idf = {tok:tf[tok]*log(10/idf[tok]) for tok in tf.keys() if tok not in query}
     max_tf_idf = 0
     for key in tf_idf:
