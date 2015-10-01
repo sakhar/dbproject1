@@ -76,7 +76,7 @@ for i in range(10):
         for tok in set(tokens_processed):
             idf[tok] += 1
 
-    if count_relevance/10 >= precision:
+    if count_relevance/10.0 >= precision:
         print 'Precision reached'
         break
 
@@ -87,9 +87,12 @@ for i in range(10):
     # we selected the new query term for the query having the largest tf-idf
     tf_idf = {tok:tf[tok]*log(10/idf[tok]) for tok in tf.keys() if tok not in query}
     max_tf_idf = 0
+
+    sorted_tf_idf = sorted(tf_idf.items(), key=operator.itemgetter(1), reverse=True)
+    print sorted_tf_idf[0][0]
     for key in tf_idf:
         if tf_idf[key] > max_tf_idf:
             new_term = key
             max_tf_idf = tf_idf[key]
 
-    query += '+'+new_term
+    query += '+'+sorted_tf_idf[0][0]+'+'+sorted_tf_idf[1][0]
