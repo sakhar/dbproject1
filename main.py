@@ -10,8 +10,6 @@ Sakhar Alkhereyf       , UNI: sa3147
 '''
 
 
-import sys
-import urllib
 import urllib2
 import base64
 import xml.etree.ElementTree as ET
@@ -22,7 +20,7 @@ import operator
 from collections import defaultdict
 from sklearn.feature_selection import chi2
 import pickle
-from sklearn.feature_extraction import DictVectorizer
+#from sklearn.feature_extraction import DictVectorizer
 from collections import Counter
 
 accountKey = 'XfbHf/vIn9YQOGFXSYwPnxOOmIWdeM95n39nD5s4FxI'
@@ -33,6 +31,7 @@ headers = {'Authorization': 'Basic ' + accountKeyEnc}
 punctuations = list(string.punctuation)
 punctuations.append('...')
 
+# Class Document to store each document information
 class Document():
     def __init__(self,id, title, des, disp, url):
         self.id = id
@@ -43,7 +42,7 @@ class Document():
 
 def parse_entry(entry):
 
-    # we parse the xml file
+    # parse the xml file
     content = entry.find('{http://www.w3.org/2005/Atom}content')
     properties = content.find('{http://schemas.microsoft.com/ado/2007/08/dataservices/metadata}properties')
     ID = properties.find('{http://schemas.microsoft.com/ado/2007/08/dataservices}ID').text
@@ -55,8 +54,8 @@ def parse_entry(entry):
     return Document(ID, Title, Description, DisplayUrl, Url)
 
 def calc_tf_idf(relevant,nonrel):
-    tf = defaultdict(int)
-    idf = defaultdict(int)
+    tf = defaultdict(float)
+    idf = defaultdict(float)
 
 
     list_of_tokens = []
@@ -76,11 +75,11 @@ def calc_tf_idf(relevant,nonrel):
         # we compute the number of occurences of the relevant tokens
         for tok in tokens_processed:
             if doc.id in relevant:
-                tf[tok] += 1
+                tf[tok] += 1.0
 
         # we compute the inverted document for each token
         for tok in set(tokens_processed):
-            idf[tok] += 1
+            idf[tok] += 1.0
     N = len(relevant)+len(nonrel)
 
     #tf_idf = {tok:tf[tok]*log(N/idf[tok]) for tok in tf.keys() if tok not in query}
@@ -122,11 +121,13 @@ def improve_query(query, relevant,nonrel):
             y.append(1)
         else:
             y.append(0)
-    vec = DictVectorizer()
 
-    X = vec.fit_transform(docs).toarray()
+    '''
+    #vec = DictVectorizer()
 
-    features, pvalue = chi2(X,y)
+    #X = vec.fit_transform(docs).toarray()
+
+    #features, pvalue = chi2(X,y)
 
     word_tuples = []
 
@@ -141,6 +142,7 @@ def improve_query(query, relevant,nonrel):
         #list_of_tokens.append(tokens_processed)
 
     #chi_square(query, relevant,nonrel)
+    '''
 
     tf_idf = calc_tf_idf(relevant,nonrel)
     filtered_tf_idf = {tok:tf_idf[tok] for tok in tf_idf if tok not in query}
@@ -150,6 +152,8 @@ def improve_query(query, relevant,nonrel):
     new_words = [word[0] for word in sorted_tf_idf[:2] if word[0] not in query]
 
     #print new_words
+    for item in sorted_tf_idf:
+        print item
 
     # remove duplicates
     seq = query+new_words
@@ -221,7 +225,8 @@ if __name__ == "__main__":
     try:
         #query = sys.argv[1]
         #precision = float(sys.argv[2])
-        query = 'taj mahal'
+        #query = 'taj mahal'
+        query = 'musk'
         precision = 0.9
 
         if precision > 1 or precision < 0:

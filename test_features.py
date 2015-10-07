@@ -24,8 +24,8 @@ punctuations = list(string.punctuation)
 punctuations.append('...')
 
 def calc_tf_idf(relevant,nonrel):
-    tf = defaultdict(int)
-    idf = defaultdict(int)
+    tf = defaultdict(float)
+    idf = defaultdict(float)
 
 
     list_of_tokens = []
@@ -33,19 +33,10 @@ def calc_tf_idf(relevant,nonrel):
 
     for doc in relevant.values()+nonrel.values():
         text = doc.title + '\n' + doc.des
+        #raw_text.append(text)
+        tokens = word_tokenize(text.lower())
         tokens_processed = []
 
-        html = urllib.urlopen(doc.url).read()
-        soup = BeautifulSoup(html,"html.parser")
-
-        # Remove scripts
-        for script in soup(["script", "style"]):
-            script.extract()
-
-        # Description Zone
-
-        tokens = word_tokenize(text.lower())
-
         for tok in tokens:
             if tok not in punctuations:
                 tokens_processed.append(tok)
@@ -54,95 +45,81 @@ def calc_tf_idf(relevant,nonrel):
         # we compute the number of occurences of the relevant tokens
         for tok in tokens_processed:
             if doc.id in relevant:
-                tf[tok] += 0.9#1
+                tf[tok] += 1.0
 
         # we compute the inverted document for each token
         for tok in set(tokens_processed):
-            idf[tok] += 0.9 #1
-
-
-        # HTML zone
-        text = soup.get_text()
-        tokens = word_tokenize(text.lower())
-
-        for tok in tokens:
-            if tok not in punctuations:
-                tokens_processed.append(tok)
-        list_of_tokens.append(tokens_processed)
-
-        # we compute the number of occurences of the relevant tokens
-        for tok in tokens_processed:
-            if doc.id in relevant:
-                tf[tok] += 0.1#1
-
-        # we compute the inverted document for each token
-        for tok in set(tokens_processed):
-            idf[tok] += 0.1 #1
-
-
+            idf[tok] += 1.0
     N = len(relevant)+len(nonrel)
 
     #tf_idf = {tok:tf[tok]*log(N/idf[tok]) for tok in tf.keys() if tok not in query}
 
     tf_idf = {tok:tf[tok]*log(N/idf[tok]) for tok in tf.keys()}
 
+    return tf_idf
 
+def calc_tf_idf(relevant,nonrel):
+    tf = defaultdict(float)
+    idf = defaultdict(float)
+
+
+    list_of_tokens = []
+    #raw_text = []
+
+    for doc in relevant.values()+nonrel.values():
+        text = doc.title + '\n' + doc.des
+        #raw_text.append(text)
+        tokens = word_tokenize(text.lower())
+        tokens_processed = []
+
+        for tok in tokens:
+            if tok not in punctuations:
+                tokens_processed.append(tok)
+        list_of_tokens.append(tokens_processed)
+
+        # we compute the number of occurences of the relevant tokens
+        for tok in tokens_processed:
+            if doc.id in relevant:
+                tf[tok] += 1.0
+
+        # we compute the inverted document for each token
+        for tok in set(tokens_processed):
+            idf[tok] += 1.0
+    N = len(relevant)+len(nonrel)
+
+    #tf_idf = {tok:tf[tok]*log(N/idf[tok]) for tok in tf.keys() if tok not in query}
+
+    tf_idf = {tok:tf[tok]*log(N/idf[tok]) for tok in tf.keys()}
 
     return tf_idf
 
 
-X = []
-y = []
+#X = []
+#y = []
 raw_text = []
 
-query = 'taj mahal'
-i = 0
+query = 'musk'
+i = 1
 
 values = pickle.load(open(query+'_'+str(i)))
 relevant = values[0]
 nonrel = values[1]
 
-for doc in relevant.values()+nonrel.values():
-    text = doc.title + '\n' + doc.des
-    #raw_text.append(text)
-
-    html = urllib.urlopen(doc.url).read()
-    soup = BeautifulSoup(html,"html.parser")
-    for script in soup(["script", "style"]):
-        script.extract()
-
-    print text
-    text += '\n' + soup.get_text()
-    print text
-    tokens = word_tokenize(text.lower())
-    tokens_processed = []
-
-    for tok in tokens:
-        if tok not in punctuations:
-            tokens_processed.append(tok)
-    #print tokens_processed
-    X.append(dict(Counter(tokens_processed)))
-    if doc.id in relevant:
-        y.append(1)
-    else:
-        y.append(0)
-
 #print X
 #print y
-vec = DictVectorizer()
+#vec = DictVectorizer()
 #print X
-new_X =  vec.fit_transform(X).toarray()
+#new_X =  vec.fit_transform(X).toarray()
 #print vec.get_feature_names()
 
 #bestK = feature_selection.SelectKBest(k=2)
-chi2, pval = feature_selection.chi2(new_X,y)
+#chi2, pval = feature_selection.chi2(new_X,y)
 
 word_tuples = []
 
-for name, c, p in zip(vec.get_feature_names(),chi2,pval):
+'''for name, c, p in zip(vec.get_feature_names(),chi2,pval):
     word_tuples.append((name, c, p))
-
-sorted_words = sorted(word_tuples, key=operator.itemgetter(2), reverse=True)
+'''
 
 #for tuple in sorted_words:
 #    print tuple
