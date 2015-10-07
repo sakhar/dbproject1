@@ -1,4 +1,13 @@
-__author__ = 'sakhar'
+'''
+Columbia University
+COMS E6111 Advanced Database Systems, Fall 2015
+Project 1
+
+Students:
+Robert Dadashi-Tazehozi, UNI: rd2669
+Sakhar Alkhereyf       , UNI: sa3147
+
+'''
 
 
 import sys
@@ -11,8 +20,11 @@ from nltk.tokenize import *
 from math import log
 import operator
 from collections import defaultdict
-from sklearn import feature_selection
+from sklearn.feature_selection import chi2
 import pickle
+from sklearn.feature_extraction import DictVectorizer
+from collections import Counter
+
 accountKey = 'XfbHf/vIn9YQOGFXSYwPnxOOmIWdeM95n39nD5s4FxI'
 accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
 headers = {'Authorization': 'Basic ' + accountKeyEnc}
@@ -48,11 +60,11 @@ def calc_tf_idf(relevant,nonrel):
 
 
     list_of_tokens = []
-    raw_text = []
+    #raw_text = []
 
     for doc in relevant.values()+nonrel.values():
         text = doc.title + '\n' + doc.des
-        raw_text.append(text)
+        #raw_text.append(text)
         tokens = word_tokenize(text.lower())
         tokens_processed = []
 
@@ -77,12 +89,56 @@ def calc_tf_idf(relevant,nonrel):
 
     return tf_idf
 
-def chi_square(query, relevant,nonrel):
-    return
-
 
 
 def improve_query(query, relevant,nonrel):
+
+    docs = []
+    y = []
+
+    for doc in relevant.values()+nonrel.values():
+        bow = {}
+        text = doc.title + '\n' + doc.des
+        tokens = word_tokenize(text.lower())
+        tokens_processed = []
+
+        for tok in tokens:
+            if tok not in punctuations:
+                tokens_processed.append(tok)
+        for token in tokens_processed:
+            try:
+                bow[token]
+            except:
+                bow[token] = 0
+            bow[token] += 1
+        docs.append(dict(Counter(tokens_processed)))
+        if doc.id in relevant:
+            y.append(1)
+        else:
+            y.append(0)
+        docs.append(bow)
+
+        if doc.id in relevant:
+            y.append(1)
+        else:
+            y.append(0)
+    vec = DictVectorizer()
+
+    X = vec.fit_transform(docs).toarray()
+
+    features, pvalue = chi2(X,y)
+
+    word_tuples = []
+
+    for name, c, p in zip(vec.get_feature_names(),features,pvalue):
+        word_tuples.append((name, c, p))
+
+    sorted_words = sorted(word_tuples, key=operator.itemgetter(1), reverse=True)
+
+    for tuple in sorted_words:
+        print tuple
+
+        #list_of_tokens.append(tokens_processed)
 
     #chi_square(query, relevant,nonrel)
 
@@ -91,14 +147,17 @@ def improve_query(query, relevant,nonrel):
 
     sorted_tf_idf = sorted(filtered_tf_idf.items(), key=operator.itemgetter(1), reverse=True)
 
-
-    print sorted_tf_idf
-
     new_words = [word[0] for word in sorted_tf_idf[:2] if word[0] not in query]
 
-    print new_words
+    #print new_words
 
-    return set(query+new_words)
+    # remove duplicates
+    seq = query+new_words
+    noDupes = []
+
+    [noDupes.append(i) for i in seq if not noDupes.count(i)]
+
+    return noDupes
 
 def run(query, target_precision):
 
@@ -109,13 +168,13 @@ def run(query, target_precision):
     nonrel = {}
 
     while precision < target_precision:
-        i += 0
+        i += 1
         print '--------------------------------------------'
         print 'Iteration {}'.format(i)
         print 'Query: {}\n'.format(' '.join(query))
 
         bingUrl = 'https://api.datamarket.azure.com/Bing/Search/Web?Query=%27'+'+'.join(query)+'%27&$top=10&$format=Atom'
-        print bingUrl
+        #print bingUrl
 
         req = urllib2.Request(bingUrl, headers = headers)
         response = urllib2.urlopen(req)
@@ -126,22 +185,28 @@ def run(query, target_precision):
             break
         precision = 0.0
         for entry in root.findall('{http://www.w3.org/2005/Atom}entry'):
-            #ID, Title, Description, DisplayUrl, Url = parse_entry(entry)
-            doc = parse_entry(entry)
-            print 'Title:', doc.title
-            print 'Description:', doc.des
-            ans = ''
-            while ans not in ['n','y']:
-                ans = raw_input("Is this document relevant (y/n) ?\n")
-                if ans == 'y':
-                    precision += 1
-                    relevant[doc.id] = doc
-                elif ans == 'n':
-                    nonrel[doc.id] = doc
+            try:
+
+                #ID, Title, Description, DisplayUrl, Url = parse_entry(entry)
+                doc = parse_entry(entry)
+                print 'URL:', doc.url
+                print 'Title:', doc.title
+                print 'Description:', doc.des
+                ans = ''
+                while ans.lower() not in ['n','y']:
+                    ans = raw_input("Is this document relevant (y/n) ?\n")
+                    if ans == 'y':
+                        precision += 1
+                        relevant[doc.id] = doc
+                    elif ans == 'n':
+                        nonrel[doc.id] = doc
+            except:
+                print 'error with the document!'
+                continue
 
         precision = precision/10.0
         if precision >= target_precision:
-            print 'Precision reached'
+            print 'Target precision reached'
             break
         if precision == 0.0:
             print 'No relevant document found'
@@ -156,7 +221,7 @@ if __name__ == "__main__":
     try:
         #query = sys.argv[1]
         #precision = float(sys.argv[2])
-        query = 'jaguar'
+        query = 'taj mahal'
         precision = 0.9
 
         if precision > 1 or precision < 0:
