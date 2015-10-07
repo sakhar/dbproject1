@@ -1,0 +1,110 @@
+dyn-160-39-170-80:dbproject1 RDT$ python main.py "taj mahal" 0.9
+--------------------------------------------
+Iteration 1
+Query: taj mahal
+
+URL: http://en.wikipedia.org/wiki/Taj_Mahal
+Title: Taj Mahal - Wikipedia, the free encyclopedia
+Description: The Taj Mahal is a white marble mausoleum located on the southern bank of the Yamuna River in the Indian city of Agra. It was commissioned in 1632 by the Mughal ...
+Is this document relevant (y/n) ?
+n
+URL: http://www.history.com/topics/taj-mahal
+Title: The Taj Mahal - Facts & Summary - HISTORY.com
+Description: Find out more about the history of The Taj Mahal, including videos, interesting articles, pictures, historical features and more. Get all the facts on HISTORY.com
+Is this document relevant (y/n) ?
+n
+URL: http://www.trumptaj.com/
+Title: Atlantic City New Jersey Casino Hotels | Trump Taj Mahal ...
+Description: For five star Atlantic City Casino hotels, Trump Taj Mahal Casino Hotel offers restaurants, nightlife and a casino floor you can't resist. Explore our Atlantic City ...
+Is this document relevant (y/n) ?
+n
+URL: http://tajmahal.gov.in/
+Title: Welcome To Official WebSite of Taj Mahal-U.P.Tourism
+Description: Official website by Department of Tourism, Government of Uttar Pradesh. Details about Taj Mahal, ticketing, tours, and tourist information.
+Is this document relevant (y/n) ?
+n
+URL: http://www.tajmahal.com/
+Title: Taj Mahal India
+Description: Taj Mahal, Taj Mahal history, taj mahal location, pictures, information, taj mahal tours, tickets and packages. Taj Mahal India
+Is this document relevant (y/n) ?
+n
+URL: http://www.tajblues.com/
+Title: An International Treasure - Taj Mahal
+Description: Official site includes news, tour schedule, discography, audio/video and pictures.
+Is this document relevant (y/n) ?
+y
+URL: http://www.allmusic.com/artist/taj-mahal-mn0000790604
+Title: Taj Mahal | Biography, Albums, & Streaming Radio | AllMusic
+Description: Find Taj Mahal bio, music, credits, awards, & streaming radio on AllMusic - A guitarist and singer/songwriter who took an…
+Is this document relevant (y/n) ?
+y
+URL: http://www.last.fm/music/Taj+Mahal
+Title: Taj Mahal — Free listening, videos, concerts, stats and ...
+Description: Taj Mahal (born Henry Saint Clair Fredericks in New York City on May 17, 1942) is an American Grammy Award-winning blues musician who incorporates elements of world ...
+Is this document relevant (y/n) ?
+y
+URL: http://www.islamicity.com/Culture/Taj/default.htm
+Title: The Taj Mahal, India
+Description: Taj Mahal or Tejo-Mahalaya - Did you know that Jesus Christ wandered the Himalayas and drew his inspiration from Hinduism?
+Is this document relevant (y/n) ?
+n
+URL: http://en.wikipedia.org/wiki/Taj_Mahal_(musician)
+Title: Taj Mahal (musician) - Wikipedia, the free encyclopedia
+Description: Henry Saint Clair Fredericks (born May 17, 1942), who uses the stage name Taj Mahal, is an American blues musician. He often incorporates elements of world music into ...
+Is this document relevant (y/n) ?
+y
+--------------------------------------------
+Iteration 2
+Query: taj mahal musician
+
+URL: http://www.tajblues.com/
+Title: An International Treasure - Taj Mahal
+Description: TAJ MAHAL Accepts Lifetime Achievement Award from Americana Music Association. September 18, 2014. Taj Mahal accepted the Lifetime Achievement Award from the ...
+Is this document relevant (y/n) ?
+y
+URL: http://en.wikipedia.org/wiki/Taj_Mahal_(musician)
+Title: Taj Mahal (musician) - Wikipedia, the free encyclopedia
+Description: Henry Saint Clair Fredericks (born May 17, 1942), who uses the stage name Taj Mahal, is an American blues musician. He often incorporates elements of world music into ...
+Is this document relevant (y/n) ?
+y
+URL: http://www.allmusic.com/artist/taj-mahal-mn0000790604
+Title: Taj Mahal | Biography, Albums, & Streaming Radio | AllMusic
+Description: Find Taj Mahal bio, music, credits, awards, & streaming radio on AllMusic - A guitarist and singer/songwriter who took an…
+Is this document relevant (y/n) ?
+y
+URL: http://www.tajblues.com/discography/
+Title: Discography - Taj Mahal
+Description: The latest in musical explorations for The Taj Mahal Trio. The Taj Mahal Trio: Taj Mahal (vocals, guitar, ... Hidden Treasures of Taj Mahal. 2012 Sony Music
+Is this document relevant (y/n) ?
+y
+URL: http://www.youtube.com/user/TajMahalMusic
+Title: Taj Mahal - YouTube
+Description: Welcome to a world of fun and fantasy where kids would love to be & parents can set them free! HooplaKidz is one of the most popular YouTube channels for preschoolers ...
+Is this document relevant (y/n) ?
+n
+URL: http://www.amazon.com/Taj-Mahal/dp/B00004XSUW
+Title: Taj Mahal - Taj Mahal - Amazon.com Music
+Description: Amazon.com. Taj Mahal's been chasing the blues around the world for years, but rarely with the passion, energy, and clarity he brought to his first three albums.
+Is this document relevant (y/n) ?
+y
+URL: http://www.last.fm/music/Taj+Mahal
+Title: Taj Mahal — Free listening, videos, concerts, stats and ...
+Description: Taj Mahal (born Henry Saint Clair Fredericks in New York City on May 17, 1942) is an American Grammy Award-winning blues musician who incorporates elements of world ...
+Is this document relevant (y/n) ?
+y
+URL: https://www.facebook.com/tajmahal
+Title: Taj Mahal
+Description: Taj Mahal is excited to present to the public for the first time prints from original etching Natch'l Blues! The Natch’l Blues prints are hand rolled ...
+Is this document relevant (y/n) ?
+y
+URL: https://myspace.com/tajblues/music/songs
+Title: Taj Mahal's Songs | Stream Online Music Songs | Listen ...
+Description: Taj Mahal's songs: Listen to songs by Taj Mahal on Myspace, Stream Free Online Music by Taj Mahal
+Is this document relevant (y/n) ?
+y
+URL: https://myspace.com/tajblues
+Title: Taj Mahal | Listen and Stream Free Music, Albums, New ...
+Description: Taj Mahal's profile including the latest music, albums, songs, music videos and more updates.
+Is this document relevant (y/n) ?
+y
+Target precision reached

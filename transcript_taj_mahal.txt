@@ -1,0 +1,110 @@
+dyn-160-39-170-80:dbproject1 RDT$ python main.py "gates" 0.9
+--------------------------------------------
+Iteration 1
+Query: gates
+
+URL: http://www.gates.com/
+Title: Gates Corporation
+Description: Gates Corporation is Powering Progress™ in the Oil & Gas, Energy, Mining, Marine, Agriculture, Transportation and Automotive Industries.
+Is this document relevant (y/n) ?
+n
+URL: http://www.gatecrafters.com/design_your_gates.aspx
+Title: Driveway Gates | Automatic Gates | Electric Gates
+Description: Driveway Gates - Automatic Gates The high-quality driveway gates from GateCrafters.com come in a wide variety of options to ...
+Is this document relevant (y/n) ?
+n
+URL: http://www.gatesbbq.com/
+Title: Gates Bar B.Q.
+Description: With the tantalizing hickory barbecue smell drawing the customer through the ranch-style doors, he is immediately greeted.
+Is this document relevant (y/n) ?
+n
+URL: http://en.wikipedia.org/wiki/Gates
+Title: Gates - Wikipedia, the free encyclopedia
+Description: Gates may refer to: Contents 1 People 2 Places 3 Art and entertainment 4 See also People Gates (surname) Gates Brown, American baseball player Gates McFadden ...
+Is this document relevant (y/n) ?
+n
+URL: https://www.facebook.com/BillGates
+Title: Bill Gates
+Description: Bill Gates reviews “Epic Measures” by Jeremy N. Smith, a new book that profiles Dr. Christopher Murray. b-gat.es | By Bill Gates. Like Comment Share. Bill Gates.
+Is this document relevant (y/n) ?
+y
+URL: http://www.amazon.com/s?ie=UTF8&page=1&rh=i%3Aaps%2Ck%3Agates
+Title: Amazon.com: gates
+Description: Product Features Expands to become a 192-inch wall mounted gate or free standing barrier
+Is this document relevant (y/n) ?
+n
+URL: http://en.wikipedia.org/wiki/Bill_Gates
+Title: Bill Gates - Wikipedia, the free encyclopedia
+Description: William Henry "Bill" Gates III (born October 28, 1955) is an American business magnate, philanthropist, investor, computer programmer, and inventor. In 1975, Gates co ...
+Is this document relevant (y/n) ?
+y
+URL: http://www.gatesfoundation.org/
+Title: Bill & Melinda Gates Foundation
+Description: The Gates Foundation’s effort to eradicate polio offers the chance to protect millions of children from paralysis forever.
+Is this document relevant (y/n) ?
+y
+URL: http://www.amazon.com/b?ie=UTF8&node=166868011
+Title: Amazon.com: Gates & Doorways: Baby Products
+Description: Online shopping for Gates & Doorways from a great selection at Baby Products Store.
+Is this document relevant (y/n) ?
+n
+URL: http://www.forbes.com/profile/bill-gates/
+Title: Bill Gates - Forbes
+Description: Forty years ago, when Bill Gates and Paul Allen launched Microsoft, Gates' goal of getting a computer on every person's desk seemed audacious.
+Is this document relevant (y/n) ?
+y
+--------------------------------------------
+Iteration 2
+Query: bill gates
+
+URL: http://www.gatesfoundation.org/
+Title: Bill & Melinda Gates Foundation
+Description: The Gates Foundation’s effort to eradicate polio offers the chance to protect millions of children from paralysis forever.
+Is this document relevant (y/n) ?
+y
+URL: http://en.wikipedia.org/wiki/Bill_Gates
+Title: Bill Gates - Wikipedia, the free encyclopedia
+Description: William Henry "Bill" Gates III (born October 28, 1955) is an American business magnate, philanthropist, investor, computer programmer, and inventor. In 1975, Gates co ...
+Is this document relevant (y/n) ?
+y
+URL: http://www.biography.com/people/bill-gates-9307520#!
+Title: Bill Gates - Biography.com
+Description: Entrepreneur Bill Gates founded the world's largest software business, Microsoft, with Paul Allen, and subsequently became one of the richest men in the world.
+Is this document relevant (y/n) ?
+y
+URL: http://www.gatesnotes.com/
+Title: Home | Bill Gates
+Description: This is my personal blog, where I share about the people I meet, the books I'm reading, and what I'm learning. I hope that you'll join the conversation.
+Is this document relevant (y/n) ?
+y
+URL: https://www.facebook.com/BillGates
+Title: Bill Gates
+Description: Bill Gates is on Facebook. To connect with Bill Gates, sign up for Facebook today. Sign Up Log In. Bill Gates. Public Figure. Public Cancel Save Changes. Bill Gates ...
+Is this document relevant (y/n) ?
+y
+URL: https://twitter.com/billgates
+Title: Bill Gates (@BillGates) | Twitter
+Description: 1,809 tweets • 500 photos/videos • 24.9M followers. "Investing in health is good for people, and for the economy. @LHSummers explains: http://t.co/MOL4levJxN"
+Is this document relevant (y/n) ?
+y
+URL: http://inventors.about.com/od/gstartinventors/a/Bill_Gates.htm
+Title: Bill Gates - Biography
+Description: Bill Gates came from a family of entrepreneurship and high-spirited liveliness. William Henry Gates III was born in Seattle, Washington on October 28th, 1955.
+Is this document relevant (y/n) ?
+y
+URL: http://www.huffingtonpost.com/news/bill-gates/
+Title: Bill Gates: Pictures, Videos, Breaking News
+Description: Big News on Bill Gates. Includes blogs, news, and community conversations about Bill Gates.
+Is this document relevant (y/n) ?
+y
+URL: http://www.forbes.com/profile/bill-gates/
+Title: Bill Gates - Forbes
+Description: Forty years ago, when Bill Gates and Paul Allen launched Microsoft, Gates' goal of getting a computer on every person's desk seemed audacious.
+Is this document relevant (y/n) ?
+y
+URL: http://news.microsoft.com/exec/billg/
+Title: Bill Gates Keynote: Microsoft Tech•Ed 2008 — Developers ...
+Description: BILL GATES: Good morning and welcome to Tech•Ed. This is the first year that we broke Tech•Ed into two sections, the section this week, which is just ...
+Is this document relevant (y/n) ?
+y
+Target precision reached
